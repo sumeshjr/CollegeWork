@@ -1,0 +1,123 @@
+<!-- adminregister.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Registration</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        margin: 50px;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      .logo {
+        max-width: 100px;
+      }
+
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      input {
+        width: calc(100% - 30px);
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        display: inline-block;
+      }
+
+      .eye-button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        top: 6px;
+        right: 30px;
+        display: inline-block;
+      }
+
+      button {
+        background-color: #28a745;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: inline-block;
+      }
+
+      button:hover {
+        background-color: blue;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="{% static 'images/sdg2.png' %}" alt="" class="logo" />
+    <h1>Admin Login</h1>
+    {% if messages %} {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %} {% endif %}
+    <form method="post" action="{% url 'loginAdmin' %}">
+      {% csrf_token %}
+      <label for="username">Username:</label>
+      <input type="text" name="username" required />
+
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" required />
+      <button
+        type="button"
+        class="eye-button"
+        onclick="togglePassword('password')"
+      >
+        👁️
+      </button>
+
+      <button type="submit">Login</button>
+    </form>
+    <p>
+      Register New Admin
+      <a href="{% url 'registerAdmin' %}">Register </a>
+    </p>
+
+    <script>
+      function togglePassword(inputId) {
+        var passwordInput = document.getElementById(inputId);
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+        } else {
+          passwordInput.type = "password";
+        }
+      }
+    </script>
+  </body>
+</html>

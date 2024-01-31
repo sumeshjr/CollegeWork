@@ -1,0 +1,16 @@
+<!-- certificate.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Achievement</title>
+</head>
+<body>
+    <h1>Congratulations!</h1>
+    <p>You have achieved a milestone and earned a certificate.</p>
+    <p>Task Count: {{ certificate.task_count }}</p>
+    <img src="{{ certificate.image.url }}" alt="Certificate Image">
+</body>
+</html>

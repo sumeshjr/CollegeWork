@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Details</title>
+  </head>
+  <body>
+    <h1>User Details</h1>
+    <p><strong>Username:</strong> {{ user.user.username }}</p>
+    <p><strong>Contact Number:</strong> {{ user.contact_number }}</p>
+    <p><strong>Age:</strong> {{ user.age }}</p>
+    <p><strong>Gender:</strong> {{ user.gender }}</p>
+
+    <h2>Goals</h2>
+    {% for goal in goals %}
+    <h3>{{ goal.title }}</h3>
+    <p><strong>Description:</strong> {{ goal.description }}</p>
+    {% if goal.images %}
+    <img src="{{ goal.images.url }}" alt="{{ goal.title }} Image" />
+    {% endif %}
+
+    <h4>Tasks</h4>
+    {% for task in goal.task_set.all %}
+    <p><strong>Title:</strong> {{ task.title }}</p>
+    <p><strong>Description:</strong> {{ task.description }}</p>
+    <p><strong>Created At:</strong> {{ task.created_at }}</p>
+    <p><strong>Updated At:</strong> {{ task.updated_at }}</p>
+    <p><strong>Completed:</strong> {{ task.completed }}</p>
+
+    {% endfor %} {% endfor %}
+
+    <a href="{% url 'view_users' %}">Back to All Users</a>
+  </body>
+</html>
